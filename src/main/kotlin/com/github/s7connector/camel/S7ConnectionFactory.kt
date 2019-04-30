@@ -1,4 +1,4 @@
-package org.neuroteamhex.s7camel
+package com.github.s7connector.camel
 
 import com.github.s7connector.api.S7Connector
 import com.github.s7connector.api.SiemensPLCS

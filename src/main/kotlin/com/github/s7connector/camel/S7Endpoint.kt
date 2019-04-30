@@ -1,14 +1,15 @@
-package org.neuroteamhex.s7camel
+package com.github.s7connector.camel
 
 import com.github.s7connector.api.S7Connector
 import com.github.s7connector.api.SiemensPLCS
-import com.github.s7connector.api.factory.S7ConnectorFactory
-import jdk.nashorn.internal.runtime.regexp.joni.Config.log
+import com.github.s7connector.camel.S7Component
 import org.apache.camel.*
-import org.apache.camel.spi.*
+import org.apache.camel.spi.UriEndpoint
+import org.apache.camel.spi.UriParam
+import org.apache.camel.spi.UriParams
+import org.apache.camel.spi.UriPath
 import org.apache.camel.support.*
 import java.util.concurrent.ScheduledExecutorService
-import java.util.concurrent.atomic.AtomicReference
 
 @UriEndpoint(scheme = "s7", syntax = "tcp:host:port/daveArea/areaNumber", title = "S7Endpoint")
 @UriParams
@@ -17,7 +18,6 @@ class S7Endpoint(
         val connectionFactory: S7ConnectionFactory,
         executorService: ScheduledExecutorService,
         @UriPath
-        @Metadata(required = true)
         val s7uri: S7URI
 ) : ScheduledPollEndpoint(s7uri.toString(), component) {
     init {
